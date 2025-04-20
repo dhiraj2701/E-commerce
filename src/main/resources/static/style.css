@@ -1,0 +1,204 @@
+:root {
+  --primary: #00d1e3;
+  --secondary: #a8eb12;
+  --dark: #1a1a1a;
+  --light: #ffffff;
+  --gray: #989898;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #00d1e3 0%, #a8eb12 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+form {
+  background: rgba(255, 255, 255, 0.95);
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+form:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--dark);
+  font-size: 28px;
+  font-weight: 700;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+.textBoxdiv {
+  position: relative;
+  margin: 30px 0;
+}
+
+.textBoxdiv input {
+  width: 100%;
+  padding: 15px 10px 10px 5px;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  background: transparent;
+  font-size: 16px;
+  color: var(--dark);
+  transition: all 0.3s ease;
+}
+
+.textBoxdiv input:focus {
+  outline: none;
+  border-bottom-color: var(--primary);
+}
+
+.textBoxdiv label {
+  position: absolute;
+  top: 15px;
+  left: 5px;
+  color: #999;
+  font-size: 16px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.textBoxdiv input:focus ~ label,
+.textBoxdiv input:valid ~ label {
+  top: -10px;
+  left: 0;
+  font-size: 12px;
+  color: var(--primary);
+}
+
+.loginButton {
+  width: 100%;
+  padding: 15px;
+  margin-top: 30px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 209, 227, 0.3);
+}
+
+.loginButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(0, 209, 227, 0.4);
+}
+
+.loginButton:active {
+  transform: translateY(1px);
+}
+
+.signBtn {
+  text-align: center;
+  margin-top: 25px;
+  color: var(--gray);
+  font-size: 14px;
+}
+
+.signBtn a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.signBtn a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.signBtn a:hover::after {
+  width: 100%;
+}
+
+/* Floating animation for form */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+form {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  form {
+    padding: 30px 20px;
+    width: 95%;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
+.success {
+  color: green;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+/* Error message styling */
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+/* Eye icon for password visibility toggle */
+.toggle-eye {
+    font-size: 18px;
+    color: var(--gray);
+    transition: color 0.3s;
+    z-index: 1; /* Ensure it's above the input field */
+}
+
+.toggle-eye:hover {
+    color: var(--primary);
+}
