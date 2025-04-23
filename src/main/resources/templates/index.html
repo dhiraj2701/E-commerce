@@ -10,7 +10,7 @@
 <!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
     <input type="hidden" th:name="${_csrf?.parameterName}" th:value="${_csrf?.token}" />
 
-    <h1>Register</h1>
+    <h1 class="myTextColor myBorder">Register</h1>
 
     <!-- Username Already Exists Error -->
     <div th:if="${param.userExisted}" class="error" style="color: red; margin-bottom: 10px;">

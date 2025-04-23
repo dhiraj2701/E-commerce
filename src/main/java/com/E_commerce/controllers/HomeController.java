@@ -10,7 +10,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -61,9 +60,9 @@ public class HomeController {
     @PostMapping("/reset-password")
     public String handleResetPassword(UserRequest request,
                                       RedirectAttributes redirectAttributes) {
-        ResponseEntity<?> updated = userService.resetPassword(request); // Create this method in your service
+        ResponseEntity<?> response = userService.resetPassword(request);
 
-        if (updated != null) {
+        if (response.getStatusCode() == HttpStatus.OK) {
             redirectAttributes.addAttribute("success", true);
         } else {
             redirectAttributes.addAttribute("error", true);

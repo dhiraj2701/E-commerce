@@ -15,7 +15,7 @@
 
 body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #00d1e3 0%, #a8eb12 100%);
+  background: linear-gradient(135deg, #551345 15%, #3cd6a3 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@ body {
 }
 
 form {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(22, 5, 27, 0.651);
   width: 100%;
   max-width: 400px;
   padding: 40px;
@@ -43,7 +43,7 @@ form:hover {
 h1 {
   text-align: center;
   margin-bottom: 40px;
-  color: var(--dark);
+  color: rgb(82, 97, 94);
   font-size: 28px;
   font-weight: 700;
   position: relative;
@@ -55,7 +55,7 @@ h1::after {
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 80px;
   height: 3px;
   background: var(--primary);
   border-radius: 3px;
@@ -73,7 +73,8 @@ h1::after {
   border-bottom: 2px solid #ddd;
   background: transparent;
   font-size: 16px;
-  color: var(--dark);
+  font-style: calc();
+  color: var(--light);
   transition: all 0.3s ease;
 }
 
@@ -201,4 +202,11 @@ form {
 
 .toggle-eye:hover {
     color: var(--primary);
+}
+.myTextColor{
+  color:#00d1e3;
+}
+
+.myBorder {
+  width: 100%;
 }

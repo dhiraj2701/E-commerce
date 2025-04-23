@@ -4,9 +4,11 @@ import com.E_commerce.dao.LoginRepo;
 import com.E_commerce.dao.UserRepository;
 import com.E_commerce.entity.TblUsers;
 import com.E_commerce.entity.UserLogin;
+import com.E_commerce.exception.UserAlreadyTakenException;
 import com.E_commerce.model.Login;
 import com.E_commerce.model.UserRequest;
 import com.E_commerce.model.Users;
+import com.E_commerce.model.response.UserResponse;
 import jakarta.transaction.Transactional;
 import javassist.NotFoundException;
 import lombok.SneakyThrows;
@@ -33,7 +35,7 @@ public class UserService implements IUserService {
 
         TblUsers userExistence = userRepository.findByEmail(users.getEmail());
         if (userExistence != null) {
-            return new ResponseEntity<>("User Already Exist", HttpStatus.OK);
+            throw new UserAlreadyTakenException();
         }
         TblUsers tblUsers = TblUsers.builder()
                 .firstName(users.getFirstName())
@@ -48,7 +50,19 @@ public class UserService implements IUserService {
                 .build();
 
         userRepository.save(tblUsers);
-        return new ResponseEntity<>(tblUsers, HttpStatus.OK);
+
+        UserResponse userResponse = UserResponse.builder()
+                .firstName(tblUsers.getFirstName())
+                .middleName(tblUsers.getMiddleName())
+                .lastName(tblUsers.getLastName())
+                .gender(tblUsers.getGender())
+                .email(tblUsers.getEmail())
+                .mobileNo(tblUsers.getMobileNo())
+                .dob(tblUsers.getDob())
+                .address(tblUsers.getAddress())
+                .build();
+
+        return new ResponseEntity<>(userResponse,HttpStatus.OK);
     }
 
     @Override
@@ -75,7 +89,7 @@ public class UserService implements IUserService {
         UserLogin user = loginRepo.findByUsername(request.getUsername());
 
         if (user == null) {
-            throw new NotFoundException("User not found");
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
 
         String encodedPassword = passwordEncoder.encode(request.getNewPassword());
@@ -87,7 +101,16 @@ public class UserService implements IUserService {
 
     @Override
     public ResponseEntity<?> userLogin(Login request) {
+        if(request.getUsername() == null || request.getPassword() == null
+                || request.getUsername().isEmpty() || request.getPassword().isEmpty()){
+            return new ResponseEntity<>("Username or Password cannot be null", HttpStatus.BAD_REQUEST);
+        }
         UserLogin user = loginRepo.findByUsername(request.getUsername());
+
+        if (user == null) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+
         if(user.getUsername().equals(request.getUsername()) &&
                 passwordEncoder.matches(request.getPassword(), user.getPassword())){
             return new ResponseEntity<>("Login Successful", HttpStatus.OK);
