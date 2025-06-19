@@ -10,14 +10,13 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Users {
-    private BigInteger id;
+
     private String firstName;
-    private String middleName;
     private String lastName;
-    private String gender;
-    private String email;
+    private String username;
     private String password;
-    private BigInteger mobileNo;
-    private String dob;
-    private String address;
+    private String email;
+    private boolean enabled;
+    private boolean locked;
+
 }

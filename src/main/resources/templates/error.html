@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 10%;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .error-container {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            padding: 2rem;
+            display: inline-block;
+            border-radius: 8px;
+        }
+
+        .status {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .message {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        a {
+            margin-top: 2rem;
+            display: inline-block;
+            text-decoration: none;
+            color: #721c24;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="error-container">
+    <div class="status">Something went wrong</div>
+    <div class="message">
+        <p th:text="'Status code: ' + ${status}">Status code: 500</p>
+        <p>Please try again or contact support.</p>
+    </div>
+    <a th:href="@{/user-login}">← Back to Home</a>
+</div>
+</body>
+</html>

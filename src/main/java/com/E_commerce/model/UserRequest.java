@@ -1,5 +1,6 @@
 package com.E_commerce.model;
 
+import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserRequest {
 
-    private String username;
+    private String token;
     private String newPassword;
 
 }
